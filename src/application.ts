@@ -35,9 +35,10 @@ class Application {
 
       const exRouter = express.Router();
 
-      routers.forEach(({ method, path, handlerName }) => {
+      routers.forEach(({ method, path, handlerName, middlewares }) => {
         exRouter[method](
           path,
+          middlewares as any,
           controllerInstance[String(handlerName)].bind(controllerInstance)
         );
 

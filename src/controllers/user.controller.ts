@@ -4,10 +4,11 @@ import { Request, Response } from "express";
 import { Get } from "../utils/handlers.decorator";
 import { UserNotFound } from "../services/exceptions";
 import { NotFound } from "./exceptions";
+import jwtMiddleware from "../middlewares/jwt.middleware";
 
 @Controller("/user")
 export default class UserController {
-  @Get("/:id")
+  @Get("/:id", [jwtMiddleware])
   async index(req: Request, res: Response): Promise<void> {
     try {
       const user = await userService.findUser(req.params.id);
