@@ -8,10 +8,10 @@ import jwtMiddleware from "../middlewares/jwt.middleware";
 
 @Controller("/user")
 export default class UserController {
-  @Get("/:id", [jwtMiddleware])
+  @Get("/profile", [jwtMiddleware])
   async index(req: Request, res: Response): Promise<void> {
     try {
-      const user = await userService.findUser(req.params.id);
+      const user = await userService.findUser(req.user_id);
       res.status(200).json({ user });
     } catch (error: Error | any) {
       const { code, message } = error;
