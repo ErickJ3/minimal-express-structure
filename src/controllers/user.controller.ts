@@ -1,10 +1,10 @@
 import userService from "../services/user.service";
 import Controller from "../utils/controller.decorator";
+import jwtMiddleware from "../middlewares/jwt.middleware";
 import { Request, Response } from "express";
 import { Get } from "../utils/handlers.decorator";
 import { UserNotFound } from "../services/exceptions";
 import { NotFound } from "./exceptions";
-import jwtMiddleware from "../middlewares/jwt.middleware";
 
 @Controller("/user")
 export default class UserController {
